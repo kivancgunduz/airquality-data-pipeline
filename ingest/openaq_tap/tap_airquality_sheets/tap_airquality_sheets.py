@@ -91,10 +91,10 @@ def main():
     for root, dirs, files in os.walk(r'./ingest/google_drive'):
         for file in files:
             if file.endswith('.ndjson'):
-                with open(os.path.join(root, file), 'rb') as f:
-                    data = ndjson.loads(f.read())
+                with open(os.path.join(root, file), encoding='latin-1') as f:
+                    data = ndjson.load(f.read(), )
                     # Write the data to stdout
-                    singer.write_records(stream_name='openaq', records=(data))
+                    singer.write_records(stream_name='openaq', records=data)
 
 
 if __name__ == '__main__':
