@@ -9,8 +9,11 @@ This project is to use OpenAQ dataset to build a data pipeline that can be used 
 
 ### Project Description
 - Get the data from OpenAQ with [SingerETL](https://www.singer.io/)
+    - SingerETL is a data pipeline tool that can be used to extract, transform, load, and analyze data.
 - Transform the data with [Apache Spark](https://spark.apache.org/)
+    - Apache Spark is a fast, scalable, and fault-tolerant framework for processing large datasets.
 - Load the data into a database with [Sqlite3](https://www.sqlite.org/)
+    - Sqlite3 is a relational database management system.
 
 ### Usage
 - Clone the project
