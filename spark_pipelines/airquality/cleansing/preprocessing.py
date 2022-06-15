@@ -39,7 +39,7 @@ def get_last_csv(file_path) -> str:
         return "File not found"
 
 
-def calculate_pm25_aqi(pm25: float) -> float:
+def cal_pm25_aqi(pm25: float) -> float:
     """
     A function to calculate the AQI for PM25.
     :param pm25: The PM25 value.
@@ -65,7 +65,7 @@ def calculate_pm25_aqi(pm25: float) -> float:
         return ((999 - 501) / (99999.9 - 500.5) * (pm25 - 500.5)) + 501
 
 
-def calculate_pm10_aqi(pm10: float) -> float:
+def cal_pm10_aqi(pm10: float) -> float:
     """
     A function to calculate the AQI for PM10.
     :param pm10: The PM10 value.
@@ -137,10 +137,16 @@ def main():
         # create pandas df
         pandas_df = aggrated.toPandas()
         # Calculate the AQI for PM25 and PM10
-        pandas_df['pm10_aqi'] = pandas_df.apply(lambda x: calculate_pm10_aqi(x['avg_24h'])if x['parameter'] == 'pm10' else 0, axis=1)
-        pandas_df['pm25_aqi'] = pandas_df.apply(lambda x: calculate_pm25_aqi(x['avg_24h']) if x['parameter'] == 'pm25' else 0, axis=1)
+        pandas_df['pm10_aqi'] = pandas_df.apply(lambda x:
+                                                cal_pm10_aqi(x['avg_24h'])
+                                                if x['parameter'] == 'pm10'
+                                                else 0, axis=1)
+        pandas_df['pm25_aqi'] = pandas_df.apply(lambda x:
+                                                cal_pm25_aqi(x['avg_24h'])
+                                                if x['parameter'] == 'pm25'
+                                                else 0, axis=1)
+        pandas_df.to_csv('./spark_pipelines/airquality/data_catalog/airQ.csv')
         # create sqlite database
-
         conn = sqlite3.connect('test_database')
         c = conn.cursor()
         c.execute('CREATE TABLE IF NOT EXISTS airquality (country TEXT, \
