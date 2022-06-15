@@ -7,6 +7,12 @@ OpenAQ is a free, open-source, community-driven database of air quality data.
 ### What is the purpose of this project?
 This project is to use OpenAQ dataset to build a data pipeline that can be used to predict air quality in a city.
 
+### Dataset
+- The dataset is available at [OpenAQ](https://openaq.org/datasets).
+- For dataset exploration -> [Jupyter Notebook](https://github.com/kivancgunduz/airquality-data-pipeline/blob/master/guide/data_exploring.ipynb) 
+
+
+
 ### Project Description
 - Get the data from OpenAQ with [SingerETL](https://www.singer.io/)
     - SingerETL is a data pipeline tool that can be used to extract, transform, load, and analyze data.
